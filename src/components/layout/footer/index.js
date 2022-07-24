@@ -5,7 +5,7 @@ const Footer = () => {
 
     return (
         <>
-            In Footer
+            <h2 style={{ textAlign: 'center' }}>Footer</h2>
         </>
     );
 }

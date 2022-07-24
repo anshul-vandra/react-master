@@ -6,11 +6,11 @@ const Dashboard = () => {
 
     return (
         <>
-            <p className="anshul">Dashboard </p>
+            <h2 style={{ textAlign: 'center' }}>Dashboard </h2>
 
             <br />
 
-            <Link to="/my-account">My Account</Link>
+            <h4 style={{ textAlign: 'center' }}><Link to="/my-account">My Account</Link></h4>
         </>
     );
 }

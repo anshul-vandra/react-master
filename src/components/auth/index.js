@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 const AuthGuard = ({ children }) => {
     const navigate = useNavigate();
-    const isLoggedIn = useSelector(s => !!s?.auth?.user?.token);
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+    console.log('isLoggedIn: ', isLoggedIn);
 
     useEffect(() => {
         if (!isLoggedIn) navigate('/signin', { replace: true });

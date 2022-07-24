@@ -2,11 +2,12 @@ import React, { Suspense } from 'react';
 import axios from 'axios';
 import { Provider } from "react-redux";
 import { BrowserRouter } from 'react-router-dom';
-import store from '../store';
+import { store } from '../Redux/store';
 import Routes from './routes';
 import ScrollToTop from '../components/common/scroll';
 import Loader from '../components/common/loader';
 import { setupAxios } from '../utils';
+
 const { PUBLIC_URL } = process.env;
 
 setupAxios(axios, store);

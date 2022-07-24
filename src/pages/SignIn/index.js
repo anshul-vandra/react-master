@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { dummyLogin } from '../../actions/auth';
+import { loginAction } from '../../Redux/AuthSlice';
 import './signin.scss';
 
 const SignIn = () => {
@@ -9,15 +9,19 @@ const SignIn = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        dispatch(dummyLogin());
-
-        navigate('/dashboard');
+        dispatch(loginAction())
+            .then(res => navigate('/dashboard'))
     }
 
     return (
         <>
-            In SignIn <br />
-            <button type="button" onClick={handleClick}>Login Test</button>
+            <div>
+                <h2 style={{ textAlign: 'center' }}>In SignIn</h2>
+            </div>
+            <br />
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <button type="button" onClick={handleClick}>Login Test</button>
+            </div>
         </>
     );
 }
