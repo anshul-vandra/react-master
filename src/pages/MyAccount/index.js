@@ -14,10 +14,11 @@ const MyAccount = () => {
 
     return (
         <>
-            <p className="anshul">In MyAccount </p>
+            <h2 style={{ textAlign: 'center' }}>In MyAccount </h2>
             <br />
-
-            <Link to="/dashboard">Dashboard</Link>
+            <h3 style={{ textAlign: 'center' }}>
+                <Link to="/dashboard">Dashboard</Link>
+            </h3>
         </>
     );
 }
