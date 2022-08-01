@@ -4,14 +4,6 @@ import './myAccount.scss';
 
 const MyAccount = () => {
 
-    React.useEffect(() => {
-
-        return () => {
-
-        }
-    }, [])
-
-
     return (
         <>
             <h2 style={{ textAlign: 'center' }}>In MyAccount </h2>
