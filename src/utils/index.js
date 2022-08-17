@@ -31,3 +31,16 @@ export const setupAxios = (axios, store) => {
         }
     });
 }
+
+export const encrypt = param => {
+    if (param)
+        return btoa(param)
+    else
+        return ''
+}
+export const decrypt = param => {
+    if (param)
+        return atob(param)
+    else
+        return ''
+}
