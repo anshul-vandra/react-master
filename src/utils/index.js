@@ -2,7 +2,6 @@
 export const toAbsoluteUrl = (pathname) => process.env.PUBLIC_URL + pathname;
 
 export const setupAxios = (axios, store) => {
-  
   axios.interceptors.request.use(
     (req) => {
       const {
@@ -58,4 +57,20 @@ export const debounce = (func) => {
       func.apply(context, args);
     }, 500);
   };
+};
+export const validateVideoFileDuration = (file) => {
+  var video = document.createElement("video");
+  video.preload = "metadata";
+
+  video.onloadedmetadata = function () {
+    window.URL.revokeObjectURL(video.src);
+    console.log("duration --- ", video.duration);
+
+    if (video.duration < 1) {
+      console.log("Invalid Video! video is less than 1 second");
+      return;
+    }
+  };
+
+  video.src = URL.createObjectURL(file);
 };
