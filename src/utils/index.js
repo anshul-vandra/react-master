@@ -58,19 +58,26 @@ export const debounce = (func) => {
     }, 500);
   };
 };
-export const validateVideoFileDuration = (file) => {
-  var video = document.createElement("video");
-  video.preload = "metadata";
 
-  video.onloadedmetadata = function () {
-    window.URL.revokeObjectURL(video.src);
-    console.log("duration --- ", video.duration);
+// check video size and duration
+// export const loadVideo = (file) =>
+//   new Promise((resolve, reject) => {
+//     try {
+//       let video = document.createElement("video");
+//       video.preload = "metadata";
 
-    if (video.duration < 1) {
-      console.log("Invalid Video! video is less than 1 second");
-      return;
-    }
-  };
+//       video.onloadedmetadata = function () {
+//         resolve(this);
+//       };
 
-  video.src = URL.createObjectURL(file);
-};
+//       video.onerror = function () {
+//         reject("Invalid video. Please select a video file.");
+//       };
+
+//       video.src = window.URL.createObjectURL(file);
+//     } catch (e) {
+//       reject(e);
+//     }
+//   });
+// calling function like this
+// let video = await loadvideo(file[0])
