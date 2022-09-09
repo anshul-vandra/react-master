@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { API_LOGIN } from "../constants";
-
-// const projectName = 'XYZ'
+import { APP_NAME, LOGIN_F, LOGIN_S } from "../constants";
 
 const initialState = {
   isLoading: false,
@@ -20,11 +18,11 @@ export const loginAction = (data) => ({
     data: data,
     hideLoader: false,
     success: (data) => ({
-      type: "login/success",
+      type: LOGIN_S,
       payload: data,
     }),
     error: (data) => ({
-      type: "login/fail",
+      type: LOGIN_F,
       payload: [],
     }),
   },
@@ -40,20 +38,20 @@ const loginSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase("login/success", (state, action) => {
+    builder.addCase(LOGIN_S, (state, action) => {
       // // Default header for auth
       // axios.defaults.headers.common['Authorization'] = action.payload.data.token;
-      // localStorage.setItem(`authToken${projectName}`, JSON.stringify(action.payload.data.token));
-      // localStorage.setItem(`user${projectName}`, JSON.stringify(action.payload.data));
+      // localStorage.setItem(`authToken${APP_NAME}`, JSON.stringify(action.payload.data.token));
+      // localStorage.setItem(`user${APP_NAME}`, JSON.stringify(action.payload.data));
 
       state.userData = action.payload;
       state.isLoggedIn = true;
     });
-    builder.addCase("login/fail", (state, action) => {
+    builder.addCase(LOGIN_F, (state, action) => {
       // // remove items on logout
       // delete axios.defaults.headers.common['Authorization']
-      // localStorage.removeItem(`authToken${projectName}`);
-      // localStorage.removeItem(`user${projectName}`);
+      // localStorage.removeItem(`authToken${APP_NAME}`);
+      // localStorage.removeItem(`user${APP_NAME}`);
 
       state.userData = {};
       state.isLoggedIn = false;

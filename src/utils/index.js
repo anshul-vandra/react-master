@@ -1,7 +1,21 @@
+import { APP_NAME, LOGIN_F, LOGIN_S } from "../constants";
+
 //To concate the path for the public folder
 export const toAbsoluteUrl = (pathname) => process.env.PUBLIC_URL + pathname;
 
+// Fun used for setting up the common header for axios through out the app and rehydrate the redux store
 export const setupAxios = (axios, store) => {
+  const token = JSON.parse(localStorage.getItem(`authToken${APP_NAME}`));
+  const userData = JSON.parse(localStorage.getItem(`user${APP_NAME}`));
+
+  // It's used to rehydrate redux auth data when page is refreshed
+  if (token) {
+    store.dispatch({ type: LOGIN_S, payload: { data: userData } });
+  } else {
+    store.dispatch({ type: LOGIN_F, payload: {} });
+  }
+
+  // It's used to intercept all the axios api request
   axios.interceptors.request.use(
     (req) => {
       const {
@@ -20,10 +34,11 @@ export const setupAxios = (axios, store) => {
     (err) => Promise.reject(err)
   );
 
+  // It's used to intercept all the axios api response
   axios.interceptors.response.use(null, (err) => {
     if (err.response) {
       if (err.response.status === 403) {
-        store.dispatch({ type: "login/fail" });
+        store.dispatch({ type: LOGIN_F });
 
         return Promise.reject(err);
       } else return Promise.reject(err);
@@ -39,10 +54,12 @@ export const setupAxios = (axios, store) => {
   });
 };
 
+// Encrypt Function
 export const encrypt = (param) => {
   if (param) return btoa(param);
   else return "";
 };
+// Decrypt Function
 export const decrypt = (param) => {
   if (param) return atob(param);
   else return "";
