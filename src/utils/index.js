@@ -98,3 +98,5 @@ export const debounce = (func) => {
 //   });
 // calling function like this
 // let video = await loadvideo(file[0])
+
+

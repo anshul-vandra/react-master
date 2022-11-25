@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { APP_NAME, LOGIN_F, LOGIN_S } from "../constants";
+import { LOGIN_F, LOGIN_S } from "../constants";
 
 const initialState = {
   isLoading: false,

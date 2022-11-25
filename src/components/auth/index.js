@@ -8,7 +8,7 @@ const AuthGuard = ({ children }) => {
   console.log("isLoggedIn: ", isLoggedIn);
 
   useEffect(() => {
-    // if (!isLoggedIn) navigate('/signin', { replace: true });
+    if (!isLoggedIn) navigate('/signin', { replace: true });
   }, [isLoggedIn, navigate]);
 
   return <>{children}</>;

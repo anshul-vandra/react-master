@@ -1,7 +1,6 @@
 import React, { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import AuthGuard from "../components/auth";
-import ImageUpload from "../pages/ImageUpload/ImageUpload";
 
 const Layout = lazy(() => import("../components/layout"));
 const SignIn = lazy(() => import("../pages/SignIn"));
@@ -22,7 +21,6 @@ const Routing = () => {
       >
         <Route index path="/dashboard" element={<Dashboard />} />
         <Route path="/my-account" element={<MyAccount />} />
-        <Route path="/image-upload" element={<ImageUpload />} />
         <Route path="/" element={<Navigate replace to="/dashboard" />} />
       </Route>
       <Route path="*" element={<Navigate replace to="/" />} />

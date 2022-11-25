@@ -1,0 +1,8 @@
+GET https://example.com/comments/1 HTTP/1.1
+
+### 
+
+POST https://api.clefill.com/v1/admin/login HTTP/1.1
+
+email=admin@clefill.com
+password=123456
