@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
+import { LOGIN_F } from '../../../constants';
 import './header.scss';
 
 const Header = () => {
@@ -7,7 +8,7 @@ const Header = () => {
     const dispatch = useDispatch()
 
     const onLogout = () => {
-        dispatch({ type: 'login/fail' })
+        dispatch({ type: LOGIN_F })
     }
     return (
         <>

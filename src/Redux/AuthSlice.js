@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LOGIN_F, LOGIN_S } from "../constants";
+import axios from "axios";
+import { API_LOGIN, LOGIN_F, LOGIN_S, LS_AUTHTOKEN, LS_USER } from "../constants";
 
 const initialState = {
+  // Global loader for api 
   isLoading: false,
+
+  // Auth Data
   isLoggedIn: false,
   userData: {},
 };
@@ -10,11 +14,8 @@ const initialState = {
 export const loginAction = (data) => ({
   type: "API",
   payload: {
-    // REAL
-    // url: API_LOGIN,
-    // DEMO
-    url: "https://jsonplaceholder.typicode.com/posts/1",
-    method: "GET",
+    url: API_LOGIN,
+    method: "POST",
     data: data,
     hideLoader: false,
     success: (data) => ({
@@ -23,7 +24,7 @@ export const loginAction = (data) => ({
     }),
     error: (data) => ({
       type: LOGIN_F,
-      payload: [],
+      payload: {},
     }),
   },
 });
@@ -39,19 +40,19 @@ const loginSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(LOGIN_S, (state, action) => {
-      // // Default header for auth
-      // axios.defaults.headers.common['Authorization'] = action.payload.data.token;
-      // localStorage.setItem(`authToken${APP_NAME}`, JSON.stringify(action.payload.data.token));
-      // localStorage.setItem(`user${APP_NAME}`, JSON.stringify(action.payload.data));
+      // Default header for auth
+      axios.defaults.headers.common["Authorization"] = action.payload.data.token;
+      localStorage.setItem(LS_AUTHTOKEN, JSON.stringify(action.payload.data.token));
+      localStorage.setItem(LS_USER, JSON.stringify(action.payload.data));
 
       state.userData = action.payload;
       state.isLoggedIn = true;
     });
     builder.addCase(LOGIN_F, (state, action) => {
-      // // remove items on logout
-      // delete axios.defaults.headers.common['Authorization']
-      // localStorage.removeItem(`authToken${APP_NAME}`);
-      // localStorage.removeItem(`user${APP_NAME}`);
+      // remove items on logout
+      delete axios.defaults.headers.common['Authorization']
+      localStorage.removeItem(LS_AUTHTOKEN);
+      localStorage.removeItem(LS_USER);
 
       state.userData = {};
       state.isLoggedIn = false;

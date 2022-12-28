@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { API_BASE } from '../constants';
-import { loaderChange } from '../Redux/AuthSlice';
+import { API_BASE } from '../../constants';
+import { loaderChange } from '../AuthSlice';
 
-const apiMiddleware = store => next => action => {
+const reduxApiMiddleware = store => next => action => {
 
     if (next) next(action);
 
@@ -22,21 +22,28 @@ const apiMiddleware = store => next => action => {
             store.dispatch(loaderChange(true));
 
         return axios({
-            baseURL: API_BASE, method, url, data
+            baseURL: API_BASE,
+            method,
+            url,
+            data,
         }).then(res => {
 
             store.dispatch(loaderChange(false));
-            store.dispatch(success(res.data));
+
+            if (success)
+                store.dispatch(success(res.data));
 
             return Promise.resolve(res.data);
         }).catch(err => {
 
             store.dispatch(loaderChange(false));
-            store.dispatch(error(err.response.data));
+
+            if (error)
+                store.dispatch(error(err.response.data));
 
             return Promise.reject(err.response.data);
         });
     }
 }
 
-export default apiMiddleware;
+export default reduxApiMiddleware;

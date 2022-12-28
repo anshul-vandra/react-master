@@ -16,7 +16,7 @@ test.https
 .DS_Store
 .env*
 !.env.example
-.package-lock
+.package-lock.json
 .yarn.lock
 
 npm-debug.log*

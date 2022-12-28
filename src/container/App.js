@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "../Redux/store";
 import Routes from "./routes";
-import ScrollToTop from "../components/common/scroll";
 import Loader from "../components/common/loader";
 import { setupAxios } from "../utils";
 import { ErrorBoundary } from "../components/Error";
@@ -19,9 +18,7 @@ const AppContainer = () => (
       <Suspense fallback={<Loader isSuspense />}>
         <Loader>
           <BrowserRouter basename={PUBLIC_URL}>
-            <ScrollToTop>
-              <Routes />
-            </ScrollToTop>
+            <Routes />
           </BrowserRouter>
         </Loader>
       </Suspense>

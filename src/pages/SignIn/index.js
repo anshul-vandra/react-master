@@ -1,8 +1,6 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginAction } from "../../Redux/AuthSlice";
-// import { debounce } from '../../utils';
 import "./signin.scss";
 
 const SignIn = () => {
@@ -10,13 +8,20 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    dispatch(loginAction()).then((res) => navigate("/dashboard"));
-  };
 
-  // const onChangeFun = (e) => {
-  //     console.log('e.target.value: ', e);
-  // }
-  // const optimizedFn = debounce(onChangeFun);
+    let requestPayload = {
+      email: 'admin@clefill.com',
+      password: "123456",
+      deviceId: '12',
+      deviceType: "web",
+      fcmToken: ''
+    }
+
+    dispatch(loginAction(requestPayload))
+      .then((res) => navigate("/dashboard"))
+      .catch((err) => alert(err?.message || 'Please try agian!'))
+
+  };
 
   return (
     <>
