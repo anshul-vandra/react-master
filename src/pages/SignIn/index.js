@@ -30,7 +30,6 @@ const SignIn = () => {
       </div>
       <br />
       <div style={{ display: "flex", justifyContent: "center" }}>
-        {/* <input onChange={(e) => { optimizedFn(e.target.value) }} /> */}
         <button type="button" onClick={handleClick}>
           Login Test
         </button>

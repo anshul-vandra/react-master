@@ -39,9 +39,9 @@ const reduxApiMiddleware = store => next => action => {
             store.dispatch(loaderChange(false));
 
             if (error)
-                store.dispatch(error(err.response.data));
+                store.dispatch(error(err.response?.data));
 
-            return Promise.reject(err.response.data);
+            return Promise.reject(err.response?.data);
         });
     }
 }
