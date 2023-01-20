@@ -21,9 +21,10 @@ export const setupAxios = (axios, store) => {
     if (err.response) {
       if (err.response.status === 403) {
         store.dispatch({ type: LOGIN_F });
-
         return Promise.reject(err);
-      } else return Promise.reject(err);
+      } else {
+        return Promise.reject(err);
+      }
     } else if (err.request) {
       return Promise.reject({
         response: {

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { API_LOGIN, USER_LIST_F, USER_LIST_S } from "../constants";
+import { API_LOGIN, USER_INFO_F, USER_INFO_S, USER_LIST_F, USER_LIST_S } from "../constants";
 
 const initialState = {
   userList: [],
@@ -34,6 +34,12 @@ const userSlice = createSlice({
     });
     builder.addCase(USER_LIST_F, (state, action) => {
       state.userList = [];
+    });
+    builder.addCase(USER_INFO_S, (state, action) => {
+      state.userInfo = action.payload.data;
+    });
+    builder.addCase(USER_INFO_F, (state, action) => {
+      state.userInfo = {};
     });
   },
 });
