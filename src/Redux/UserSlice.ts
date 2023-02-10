@@ -46,7 +46,7 @@ const userSlice = createSlice({
       state.userInfo = action.payload.data;
     });
     builder.addCase(USER_INFO_F, (state) => {
-      state.userInfo = initialState.userInfo;
+      state.userInfo = {};
     });
   },
 });

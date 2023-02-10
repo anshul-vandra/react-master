@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { IUserLoginPost } from "Types/Entity/AuthEntity";
+import { ILoginApiParam } from "Types/Entity/AuthEntity";
 import { loginAction } from "../../Redux/AuthSlice";
 import { RootState } from '../../Redux/store'
 import "./signin.scss";
@@ -18,7 +18,7 @@ const SignIn = () => {
 
   const handleClick = () => {
 
-    let requestPayload: IUserLoginPost = {
+    let requestPayload: ILoginApiParam = {
       email: 'admin@clefill.com',
       password: "123456",
       deviceId: '12',

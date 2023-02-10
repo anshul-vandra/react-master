@@ -8,7 +8,7 @@ export interface IAdmin {
     updatedAt: Date;
 }
 
-export interface IUserLoginPost {
+export interface ILoginApiParam {
     email: string;
     password: string;
     deviceId: string;

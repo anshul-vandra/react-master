@@ -1,4 +1,4 @@
-import { IAdmin, IUserLoginPost } from '../Types/Entity/AuthEntity';
+import { IAdmin, ILoginApiParam } from '../Types/Entity/AuthEntity';
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_LOGIN, LOGIN_F, LOGIN_S, LS_AUTHORED, LS_USER } from "../constants";
@@ -11,14 +11,12 @@ export interface IAuthSlice {
 }
 
 const initialState: IAuthSlice = {
-  // Global loader for api 
   isLoading: false,
-  // Auth Data
   isLoggedIn: false,
   userData: {},
 };
 
-export const loginAction: any = (data: IUserLoginPost) => ({
+export const loginAction: any = (data: ILoginApiParam) => ({
   type: "API",
   payload: {
     url: API_LOGIN,
@@ -31,7 +29,7 @@ export const loginAction: any = (data: IUserLoginPost) => ({
     }),
     error: (data) => ({
       type: LOGIN_F,
-      payload: initialState.userData,
+      payload: {},
     }),
   },
 });
