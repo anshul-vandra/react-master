@@ -11,5 +11,8 @@ export interface IAdmin {
 export interface IUserLoginPost {
     email: string;
     password: string;
+    deviceId: string;
+    deviceType: string;
+    fcmToken: string
 }
 

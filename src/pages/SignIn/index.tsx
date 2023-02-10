@@ -20,12 +20,17 @@ const SignIn = () => {
 
     let requestPayload: IUserLoginPost = {
       email: 'admin@clefill.com',
-      password: "password"
+      password: "123456",
+      deviceId: '12',
+      deviceType: "web",
+      fcmToken: ''
     }
 
     dispatch(loginAction(requestPayload))
       .then((res) => navigate("/dashboard"))
-      .catch((err) => navigate("/dashboard"))
+      .catch((err) => { })
+
+    navigate("/dashboard")
   };
 
   const onPlus = () => { setcount(count + 1) }
@@ -41,7 +46,9 @@ const SignIn = () => {
           <button type="button" onClick={onMinus}>-</button>
         </div>
       </div>
+
       <br />
+
       <div style={{ display: "flex", justifyContent: "center" }}>
         <button type="button" onClick={handleClick}>
           Login Test

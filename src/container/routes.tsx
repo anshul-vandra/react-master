@@ -1,6 +1,6 @@
 import React, { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import AuthGuard from "../components/auth";
+import AuthGuard from "../components/AuthGuard";
 
 const Layout = lazy(() => import("../components/layout"));
 const SignIn = lazy(() => import("../pages/SignIn"));
