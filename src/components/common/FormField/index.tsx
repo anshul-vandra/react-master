@@ -1,3 +1,4 @@
+import { IRenderInputProps } from "Types/Common/FormField"
 
 export const RenderInput = ({
     labelName,
@@ -6,7 +7,7 @@ export const RenderInput = ({
     containerClass,
     inputClass,
     errorClass,
-}) => {
+}: IRenderInputProps) => {
     return (
         <div className={containerClass}>
             <label>{labelName}</label>

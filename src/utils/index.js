@@ -1,4 +1,4 @@
-import { LOGIN_F, LOGIN_S, LS_AUTHTOKEN, LS_USER } from "../constants";
+import { LOGIN_F, LOGIN_S, LS_AUTHORED, LS_USER } from "../constants";
 
 //To concate the path for the public folder
 export const toAbsoluteUrl = (pathname) => process.env.PUBLIC_URL + pathname;
@@ -6,7 +6,7 @@ export const toAbsoluteUrl = (pathname) => process.env.PUBLIC_URL + pathname;
 // Fun used for setting up the common header for axios through out the app and rehydrate the redux store
 export const setupAxios = (axios, store) => {
 
-  const token = JSON.parse(localStorage.getItem(LS_AUTHTOKEN));
+  const token = JSON.parse(localStorage.getItem(LS_AUTHORED));
   const userData = JSON.parse(localStorage.getItem(LS_USER));
 
   // It's used to rehydrate redux auth data when page is refreshed
@@ -49,15 +49,3 @@ export const decrypt = (param) => {
   else return "";
 };
 
-// Debouncing for input search 
-export const debounce = (func) => {
-  let timer;
-  return function (...args) {
-    const context = this;
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(() => {
-      timer = null;
-      func.apply(context, args);
-    }, 500);
-  };
-};

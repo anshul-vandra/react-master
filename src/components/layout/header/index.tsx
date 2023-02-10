@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch } from "react-redux";
 import { LOGIN_F } from '../../../constants';
 import './header.scss';

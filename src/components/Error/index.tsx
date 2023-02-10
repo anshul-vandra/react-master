@@ -1,7 +1,16 @@
 import React from "react";
 import "./error.scss";
-export class ErrorBoundary extends React.Component {
-  constructor(props) {
+
+interface IProps {
+  children: any
+}
+
+interface IState {
+  hasError?: boolean;
+}
+
+export class ErrorBoundary extends React.Component<IProps, IState> {
+  constructor(props: any) {
     super(props);
     this.state = { hasError: false };
   }
@@ -24,7 +33,7 @@ export class ErrorBoundary extends React.Component {
           <div className="content"> */}
             {/* <Link to={"/"}> */}
             <a href="/">
-              <button class="glow-on-hover" type="button">
+              <button className="glow-on-hover" type="button">
                 Go Back
               </button>
             </a>

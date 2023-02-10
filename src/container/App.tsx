@@ -15,7 +15,7 @@ setupAxios(axios, store);
 const AppContainer = () => (
   <ErrorBoundary>
     <Provider store={store}>
-      <Suspense fallback={<Loader isSuspense />}>
+      <Suspense fallback={<Loader ><h6>Loading</h6></Loader>}>
         <Loader>
           <BrowserRouter basename={PUBLIC_URL}>
             <Routes />

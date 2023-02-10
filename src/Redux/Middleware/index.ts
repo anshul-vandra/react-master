@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { API_BASE } from '../../constants';
 import { loaderChange } from '../AuthSlice';
 
@@ -26,7 +26,7 @@ const reduxApiMiddleware = store => next => action => {
             method,
             url,
             data,
-        }).then(res => {
+        }).then((res: AxiosResponse) => {
 
             store.dispatch(loaderChange(false));
 
@@ -34,7 +34,7 @@ const reduxApiMiddleware = store => next => action => {
                 store.dispatch(success(res.data));
 
             return Promise.resolve(res.data);
-        }).catch(err => {
+        }).catch((err: AxiosError) => {
 
             store.dispatch(loaderChange(false));
 

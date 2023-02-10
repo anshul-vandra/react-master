@@ -1,17 +1,24 @@
+import { IAdmin, IUserLoginPost } from '../Types/Entity/AuthEntity';
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { API_LOGIN, LOGIN_F, LOGIN_S, LS_AUTHTOKEN, LS_USER } from "../constants";
+import { API_LOGIN, LOGIN_F, LOGIN_S, LS_AUTHORED, LS_USER } from "../constants";
 
-const initialState = {
+export interface IAuthSlice {
+  isLoading: boolean;
+  isLoggedIn: boolean;
+  userData: IAdmin | {};
+  isSuperAdmin?: boolean;
+}
+
+const initialState: IAuthSlice = {
   // Global loader for api 
   isLoading: false,
-
   // Auth Data
   isLoggedIn: false,
   userData: {},
 };
 
-export const loginAction = (data) => ({
+export const loginAction: any = (data: IUserLoginPost) => ({
   type: "API",
   payload: {
     url: API_LOGIN,
@@ -24,7 +31,7 @@ export const loginAction = (data) => ({
     }),
     error: (data) => ({
       type: LOGIN_F,
-      payload: {},
+      payload: initialState.userData,
     }),
   },
 });
@@ -39,22 +46,22 @@ const loginSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(LOGIN_S, (state, action) => {
+    builder.addCase(LOGIN_S, (state, action: any) => {
       // Default header for auth
       axios.defaults.headers.common["Authorization"] = action.payload.data.token;
-      localStorage.setItem(LS_AUTHTOKEN, JSON.stringify(action.payload.data.token));
+      localStorage.setItem(LS_AUTHORED, JSON.stringify(action.payload.data.token));
       localStorage.setItem(LS_USER, JSON.stringify(action.payload.data));
 
       state.userData = action.payload;
       state.isLoggedIn = true;
     });
-    builder.addCase(LOGIN_F, (state, action) => {
+    builder.addCase(LOGIN_F, (state, action: any) => {
       // remove items on logout
       delete axios.defaults.headers.common['Authorization']
-      localStorage.removeItem(LS_AUTHTOKEN);
+      localStorage.removeItem(LS_AUTHORED);
       localStorage.removeItem(LS_USER);
 
-      state.userData = {};
+      state.userData = action.payload;
       state.isLoggedIn = false;
     });
   },

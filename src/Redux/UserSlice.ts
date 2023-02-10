@@ -1,7 +1,13 @@
+import { IUser } from '../Types/Entity/UserEntity';
 import { createSlice } from "@reduxjs/toolkit";
 import { API_LOGIN, USER_INFO_F, USER_INFO_S, USER_LIST_F, USER_LIST_S } from "../constants";
 
-const initialState = {
+export interface IUserSlice {
+  userList: IUser[];
+  userInfo: IUser | {};
+}
+
+const initialState: IUserSlice = {
   userList: [],
   userInfo: {},
 };
@@ -28,21 +34,21 @@ export const getUserList = (data) => ({
 const userSlice = createSlice({
   name: "user",
   initialState: initialState,
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(USER_LIST_S, (state, action) => {
+    builder.addCase(USER_LIST_S, (state, action: any) => {
       state.userList = action.payload.data;
     });
-    builder.addCase(USER_LIST_F, (state, action) => {
+    builder.addCase(USER_LIST_F, (state) => {
       state.userList = [];
     });
-    builder.addCase(USER_INFO_S, (state, action) => {
+    builder.addCase(USER_INFO_S, (state, action: any) => {
       state.userInfo = action.payload.data;
     });
-    builder.addCase(USER_INFO_F, (state, action) => {
-      state.userInfo = {};
+    builder.addCase(USER_INFO_F, (state) => {
+      state.userInfo = initialState.userInfo;
     });
   },
 });
 
-export const { loaderChange } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,3 +1,4 @@
+import { RenderInput } from "components/common/FormField";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./dashboard.scss";
@@ -13,7 +14,13 @@ const Dashboard = () => {
       <h4 style={{ textAlign: "center" }}>
         <Link to="/my-account">My Account</Link>
       </h4>
-
+      <div>
+        <RenderInput
+          labelName="User Name"
+          name="userName"
+          type="text"
+        />
+      </div>
     </>
   );
 };
