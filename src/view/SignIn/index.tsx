@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ILoginApiParam } from "Types/Entity/AuthEntity";
-import { loginAction } from "../../Redux/AuthSlice";
-import { RootState } from '../../Redux/store'
+import { loginAction } from "../../services/AuthSlice";
+import { RootState } from '../../services/store'
 import "./signin.scss";
 
 const SignIn = () => {

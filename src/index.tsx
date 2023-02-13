@@ -1,6 +1,6 @@
 import React, { StrictMode } from "react";
 import "./index.scss";
-import App from "./container/App";
+import App from "./view/App";
 import { createRoot } from "react-dom/client";
 
 const container = document.getElementById("root") as HTMLElement;

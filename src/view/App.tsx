@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import axios from "axios";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { store } from "../Redux/store";
+import { store } from "../services/store";
 import Routes from "./routes";
 import Loader from "../components/common/loader";
 import { setupAxios } from "../utils";

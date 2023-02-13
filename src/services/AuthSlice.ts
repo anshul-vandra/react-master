@@ -13,7 +13,7 @@ export interface IAuthSlice {
 const initialState: IAuthSlice = {
   isLoading: false,
   isLoggedIn: false,
-  userData: {},
+  userData: {}
 };
 
 export const loginAction: any = (data: ILoginApiParam) => ({

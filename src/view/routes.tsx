@@ -3,9 +3,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import AuthGuard from "../components/AuthGuard";
 
 const Layout = lazy(() => import("../components/layout"));
-const SignIn = lazy(() => import("../pages/SignIn"));
-const Dashboard = lazy(() => import("../pages/Dashboard"));
-const MyAccount = lazy(() => import("../pages/MyAccount"));
+const SignIn = lazy(() => import("./SignIn"));
+const Dashboard = lazy(() => import("./Dashboard"));
+const MyAccount = lazy(() => import("./MyAccount"));
 
 const Routing = () => {
   return (

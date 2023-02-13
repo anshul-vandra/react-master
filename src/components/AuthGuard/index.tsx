@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { RootState } from "Redux/store";
+import { RootState } from "services/store";
 
 const AuthGuard = ({ children }) => {
   const navigate = useNavigate();
