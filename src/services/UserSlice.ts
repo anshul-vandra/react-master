@@ -1,6 +1,7 @@
 import { IUser } from '../Types/Entity/UserEntity';
 import { createSlice } from "@reduxjs/toolkit";
-import { API_LOGIN, USER_INFO_F, USER_INFO_S, USER_LIST_F, USER_LIST_S } from "../constants";
+import { USER_INFO_F, USER_INFO_S, USER_LIST_F, USER_LIST_S } from "../constants/reducer";
+import { API_LOGIN, } from "../constants/api";
 
 export interface IUserSlice {
   userList: IUser[];

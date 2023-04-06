@@ -1,18 +1,23 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ILoginApiParam } from "Types/Entity/AuthEntity";
-import { loginAction } from "../../services/AuthSlice";
-import { RootState } from '../../services/store'
+import { authFail, authSuccess, loginAction } from "../../services/AuthSlice";
+import { useAppSelector } from '../../services/store'
 import "./signin.scss";
+import { ROUTES } from "constants/routes";
+import { IApiError, IApiSuccess } from "Types/Common";
+import Button from "components/common/Button";
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const authData = useSelector((state: RootState) => state.auth)
-  const userData = useSelector((state: RootState) => state.user)
-  console.log('authData: ', authData);
-  console.log('authData: ', userData.userInfo);
+
+  const { isLoggedIn } = useAppSelector((state) => state.auth)
+  const { userList } = useAppSelector((state) => state.user)
+
+  console.log('userList: ', userList);
+  console.log('isLoggedIn: ', isLoggedIn);
 
   const [count, setcount] = useState<number>(0)
 
@@ -27,10 +32,15 @@ const SignIn = () => {
     }
 
     dispatch(loginAction(requestPayload))
-      .then((res) => navigate("/dashboard"))
-      .catch((err) => { })
+      .then((res: IApiSuccess) => {
+        dispatch(authSuccess(res?.data))
+        navigate(ROUTES.dashboard)
+      })
+      .catch((err: IApiError) => {
+        dispatch(authFail({}))
+      })
 
-    navigate("/dashboard")
+    navigate(ROUTES.dashboard)
   };
 
   const onPlus = () => { setcount(count + 1) }
@@ -50,9 +60,13 @@ const SignIn = () => {
       <br />
 
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <button type="button" onClick={handleClick}>
+        <Button
+          variant="primary"
+          type="button"
+          onClick={handleClick}
+        >
           Login Test
-        </button>
+        </Button>
       </div>
     </>
   );

@@ -1,19 +1,25 @@
 import { useDispatch } from "react-redux";
-import { LOGIN_F } from '../../../constants';
 import './header.scss';
+import Button from "components/common/Button";
+import { authFail } from "services/AuthSlice";
 
 const Header = () => {
-    // const dispatch = useDispatch();
     const dispatch = useDispatch()
 
     const onLogout = () => {
-        dispatch({ type: LOGIN_F })
+        dispatch(authFail({}))
     }
     return (
         <>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <h2 >Header</h2>
-                <button type='button' onClick={onLogout}>Logout</button>
+                <Button
+                    variant="primary"
+                    type="button"
+                    onClick={onLogout}
+                >
+                    Logout
+                </Button>
             </div>
         </>
     );

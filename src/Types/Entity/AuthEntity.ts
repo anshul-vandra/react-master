@@ -3,9 +3,9 @@ export interface IAdmin {
     lastName: string;
     email: string;
     phoneNumber: string;
-    token?: string;
-    createdAt: Date;
-    updatedAt: Date;
+    token: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 export interface ILoginApiParam {

@@ -1,19 +1,24 @@
-import { LOGIN_F, LOGIN_S, LS_AUTHORED, LS_USER } from "../constants";
+import { LOGIN_F } from "constants/reducer";
+import { LS_AUTHORED, LS_USER } from "../constants";
+import { authFail, authSuccess } from "services/AuthSlice";
 
 //To concate the path for the public folder
-export const toAbsoluteUrl = (pathname) => process.env.PUBLIC_URL + pathname;
+export const toAbsoluteUrl = (pathname) => window.location.origin + pathname;
 
 // Fun used for setting up the common header for axios through out the app and rehydrate the redux store
 export const setupAxios = (axios, store) => {
 
-  const token = JSON.parse(localStorage.getItem(LS_AUTHORED));
-  const userData = JSON.parse(localStorage.getItem(LS_USER));
+  if (localStorage.getItem(LS_AUTHORED) && localStorage.getItem(LS_USER)) {
+    const token = JSON.parse(localStorage.getItem(LS_AUTHORED) || '');
+    const userData = JSON.parse(localStorage.getItem(LS_USER) || '');
 
-  // It's used to rehydrate redux auth data when page is refreshed
-  if (token) {
-    store.dispatch({ type: LOGIN_S, payload: { data: userData } });
-  } else {
-    store.dispatch({ type: LOGIN_F, payload: {} });
+    // It's used to rehydrate redux auth data when page is refreshed
+    if (token) {
+      let USER_DATA = { ...userData, token: token };
+      store.dispatch(authSuccess(USER_DATA));
+    } else {
+      store.dispatch(authFail({}));
+    }
   }
 
   // It's used to intercept all the axios api response

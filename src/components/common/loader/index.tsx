@@ -1,7 +1,6 @@
 import './index.scss';
 
 const Loading = ({ children }) => {
-    // const isLoading = useSelector(state => state?.auth.isLoading);
 
     return (
         <>
