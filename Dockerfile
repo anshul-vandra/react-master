@@ -1,5 +1,5 @@
 # # with node installation
-FROM node:14.18-alpine
+FROM node:18.16.0-alpine
 WORKDIR /usr/src/app
 
 COPY package*.json /usr/src/app/
